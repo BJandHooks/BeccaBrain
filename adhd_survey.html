@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHD & Executive Function Survey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+        
+        .question {
+            margin-bottom: 35px;
+        }
+        
+        .question-text {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        
+        .option {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        label {
+            cursor: pointer;
+            color: #444;
+            font-size: 15px;
+        }
+        
+        button {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        button:hover {
+            background: #357ae8;
+        }
+        
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .section-header {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            margin: 30px -40px 25px -40px;
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .submit-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .admin-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .admin-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .response-count {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        #downloadBtn {
+            background: #28a745;
+        }
+        
+        #downloadBtn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ADHD & Executive Function Survey</h1>
+        <p class="description">Help design an app for people with executive function struggles. This takes 3-5 minutes. All questions are optional.</p>
+        
+        <div class="success-message" id="successMessage">
+            Response submitted! Thank you.
+        </div>
+        
+        <form id="surveyForm">
+            <div class="section-header">Your Brain</div>
+            
+            <div class="question">
+                <div class="question-text">1. Which executive function issues affect you most? (check all that apply)</div>
+                <div class="option"><input type="checkbox" name="q1" value="Task initiation" id="q1_1"><label for="q1_1">Task initiation (getting started)</label></div>
+                <div class="option"><input type="checkbox" name="q1" value="Time blindness" id="q1_2"><label for="q1_2">Time blindness (losing track of time)</label></div>
+                <div class="option"><input type="checkbox" name="q1" value="Task switching" id="q1_3"><label for="q1_3">Task switching (moving between activities)</label></div>
+                <div class="option"><input type="checkbox" name="q1" value="Task completion" id="q1_4"><label for="q1_4">Task completion (finishing things)</label></div>
+                <div class="option"><input type="checkbox" name="q1" value="Working memory" id="q1_5"><label for="q1_5">Working memory (remembering what you're supposed to do)</label></div>
+                <div class="option"><input type="checkbox" name="q1" value="Emotional regulation" id="q1_6"><label for="q1_6">Emotional regulation (doom spirals, rejection sensitivity)</label></div>
+                <div class="option"><input type="checkbox" name="q1" value="Prioritization" id="q1_7"><label for="q1_7">Prioritization (knowing what to do first)</label></div>
+                <div class="option"><input type="checkbox" name="q1" value="Hyperfixation" id="q1_8"><label for="q1_8">Hyperfixation (can't stop once started)</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">2. What's your ADHD presentation?</div>
+                <div class="option"><input type="radio" name="q2" value="Primarily inattentive" id="q2_1"><label for="q2_1">Primarily inattentive</label></div>
+                <div class="option"><input type="radio" name="q2" value="Primarily hyperactive/impulsive" id="q2_2"><label for="q2_2">Primarily hyperactive/impulsive</label></div>
+                <div class="option"><input type="radio" name="q2" value="Combined" id="q2_3"><label for="q2_3">Combined</label></div>
+                <div class="option"><input type="radio" name="q2" value="Not diagnosed but suspect ADHD" id="q2_4"><label for="q2_4">Not diagnosed but suspect ADHD</label></div>
+                <div class="option"><input type="radio" name="q2" value="Other neurodivergence" id="q2_5"><label for="q2_5">Other neurodivergence (autism, etc.)</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">3. Are you medicated for ADHD?</div>
+                <div class="option"><input type="radio" name="q3" value="Yes, consistently" id="q3_1"><label for="q3_1">Yes, consistently</label></div>
+                <div class="option"><input type="radio" name="q3" value="Yes, inconsistently" id="q3_2"><label for="q3_2">Yes, inconsistently</label></div>
+                <div class="option"><input type="radio" name="q3" value="No, can't access medication" id="q3_3"><label for="q3_3">No, can't access medication</label></div>
+                <div class="option"><input type="radio" name="q3" value="No, choose not to" id="q3_4"><label for="q3_4">No, choose not to</label></div>
+                <div class="option"><input type="radio" name="q3" value="Not applicable" id="q3_5"><label for="q3_5">Not applicable</label></div>
+            </div>
+            
+            <div class="section-header">What Works (or doesn't)</div>
+            
+            <div class="question">
+                <div class="question-text">4. What actually gets you unstuck when you have task paralysis? (check all that apply)</div>
+                <div class="option"><input type="checkbox" name="q4" value="Another person showing up/checking in" id="q4_1"><label for="q4_1">Another person showing up/checking in</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="External deadline with real consequences" id="q4_2"><label for="q4_2">External deadline with real consequences</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="Body doubling" id="q4_3"><label for="q4_3">Body doubling (someone working nearby)</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="Breaking task into tiny steps" id="q4_4"><label for="q4_4">Breaking task into tiny steps</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="Changing locations" id="q4_5"><label for="q4_5">Changing locations</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="Timers/time pressure" id="q4_6"><label for="q4_6">Timers/time pressure</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="Rewards/dopamine hits" id="q4_7"><label for="q4_7">Rewards/dopamine hits</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="Anxiety about consequences" id="q4_8"><label for="q4_8">Anxiety about consequences</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="Nothing works reliably" id="q4_9"><label for="q4_9">Nothing works reliably</label></div>
+                <div class="option"><input type="checkbox" name="q4" value="I don't experience task paralysis" id="q4_10"><label for="q4_10">I don't experience task paralysis</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">5. Have you used ADHD/productivity apps?</div>
+                <div class="option"><input type="radio" name="q5" value="Yes, currently use one or more" id="q5_1"><label for="q5_1">Yes, currently use one or more</label></div>
+                <div class="option"><input type="radio" name="q5" value="Yes, but stopped using them" id="q5_2"><label for="q5_2">Yes, but stopped using them</label></div>
+                <div class="option"><input type="radio" name="q5" value="Tried many, none stuck" id="q5_3"><label for="q5_3">Tried many, none stuck</label></div>
+                <div class="option"><input type="radio" name="q5" value="Never tried any" id="q5_4"><label for="q5_4">Never tried any</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">6. If you stopped using apps, why? (check all that apply)</div>
+                <div class="option"><input type="checkbox" name="q6" value="Too complicated to set up" id="q6_1"><label for="q6_1">Too complicated to set up</label></div>
+                <div class="option"><input type="checkbox" name="q6" value="Too much daily maintenance" id="q6_2"><label for="q6_2">Too much daily maintenance</label></div>
+                <div class="option"><input type="checkbox" name="q6" value="Notifications were annoying/ignorable" id="q6_3"><label for="q6_3">Notifications were annoying/ignorable</label></div>
+                <div class="option"><input type="checkbox" name="q6" value="Forgot the app existed" id="q6_4"><label for="q6_4">Forgot the app existed</label></div>
+                <div class="option"><input type="checkbox" name="q6" value="Felt like being nagged" id="q6_5"><label for="q6_5">Felt like being nagged</label></div>
+                <div class="option"><input type="checkbox" name="q6" value="Didn't actually help" id="q6_6"><label for="q6_6">Didn't actually help</label></div>
+                <div class="option"><input type="checkbox" name="q6" value="Gamification felt manipulative" id="q6_7"><label for="q6_7">Gamification felt manipulative</label></div>
+                <div class="option"><input type="checkbox" name="q6" value="Required too much executive function to use" id="q6_8"><label for="q6_8">Required too much executive function to use</label></div>
+            </div>
+            
+            <div class="section-header">Morning Routines</div>
+            
+            <div class="question">
+                <div class="question-text">7. Do you struggle with morning routines?</div>
+                <div class="option"><input type="radio" name="q7" value="Yes, severely" id="q7_1"><label for="q7_1">Yes, severely (regularly late/miss things)</label></div>
+                <div class="option"><input type="radio" name="q7" value="Yes, moderately" id="q7_2"><label for="q7_2">Yes, moderately (stressful but usually manage)</label></div>
+                <div class="option"><input type="radio" name="q7" value="Sometimes" id="q7_3"><label for="q7_3">Sometimes</label></div>
+                <div class="option"><input type="radio" name="q7" value="No, mornings are fine" id="q7_4"><label for="q7_4">No, mornings are fine</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">8. What derails your mornings most? (pick top 2)</div>
+                <div class="option"><input type="checkbox" name="q8" value="Phone/social media black holes" id="q8_1"><label for="q8_1">Phone/social media black holes</label></div>
+                <div class="option"><input type="checkbox" name="q8" value="Can't get out of bed" id="q8_2"><label for="q8_2">Can't get out of bed</label></div>
+                <div class="option"><input type="checkbox" name="q8" value="Forgetting steps in the routine" id="q8_3"><label for="q8_3">Forgetting steps in the routine</label></div>
+                <div class="option"><input type="checkbox" name="q8" value="Getting distracted mid-task" id="q8_4"><label for="q8_4">Getting distracted mid-task</label></div>
+                <div class="option"><input type="checkbox" name="q8" value="Decision fatigue" id="q8_5"><label for="q8_5">Decision fatigue (what to wear, eat, etc.)</label></div>
+                <div class="option"><input type="checkbox" name="q8" value="Other people/pets needing attention" id="q8_6"><label for="q8_6">Other people/pets needing attention</label></div>
+                <div class="option"><input type="checkbox" name="q8" value="No consistent routine to follow" id="q8_7"><label for="q8_7">No consistent routine to follow</label></div>
+            </div>
+            
+            <div class="section-header">Accountability & Notifications</div>
+            
+            <div class="question">
+                <div class="question-text">9. How do you feel about someone other than a spouse/parent having visibility into your tasks for accountability?</div>
+                <div class="option"><input type="radio" name="q9" value="Very comfortable" id="q9_1"><label for="q9_1">Very comfortable</label></div>
+                <div class="option"><input type="radio" name="q9" value="Somewhat comfortable" id="q9_2"><label for="q9_2">Somewhat comfortable</label></div>
+                <div class="option"><input type="radio" name="q9" value="Neutral" id="q9_3"><label for="q9_3">Neutral</label></div>
+                <div class="option"><input type="radio" name="q9" value="Uncomfortable" id="q9_4"><label for="q9_4">Uncomfortable</label></div>
+                <div class="option"><input type="radio" name="q9" value="Absolutely not" id="q9_5"><label for="q9_5">Absolutely not</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">10. Which notification types actually get your attention? (check all that work)</div>
+                <div class="option"><input type="checkbox" name="q10" value="Persistent" id="q10_1"><label for="q10_1">Persistent (stays until dismissed)</label></div>
+                <div class="option"><input type="checkbox" name="q10" value="Push notifications" id="q10_2"><label for="q10_2">Push notifications (standard phone alerts)</label></div>
+                <div class="option"><input type="checkbox" name="q10" value="Location-based" id="q10_3"><label for="q10_3">Location-based (triggers when you're near a place)</label></div>
+                <div class="option"><input type="checkbox" name="q10" value="Time-based countdowns" id="q10_4"><label for="q10_4">Time-based countdowns</label></div>
+                <div class="option"><input type="checkbox" name="q10" value="Someone texting/calling you" id="q10_5"><label for="q10_5">Someone texting/calling you</label></div>
+                <div class="option"><input type="checkbox" name="q10" value="Visual widgets on home screen" id="q10_6"><label for="q10_6">Visual widgets on home screen</label></div>
+                <div class="option"><input type="checkbox" name="q10" value="Wearable vibrations" id="q10_7"><label for="q10_7">Wearable vibrations (watch/fitness tracker)</label></div>
+                <div class="option"><input type="checkbox" name="q10" value="None of these work" id="q10_8"><label for="q10_8">None of these work</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">11. What makes you actually open and use an app consistently? (pick top 2)</div>
+                <div class="option"><input type="checkbox" name="q11" value="Takes less than 30 seconds to interact with" id="q11_1"><label for="q11_1">Takes less than 30 seconds to interact with</label></div>
+                <div class="option"><input type="checkbox" name="q11" value="Someone else is counting on me" id="q11_2"><label for="q11_2">Someone else is counting on me</label></div>
+                <div class="option"><input type="checkbox" name="q11" value="Shows me consequences of not doing things" id="q11_3"><label for="q11_3">Shows me consequences of not doing things</label></div>
+                <div class="option"><input type="checkbox" name="q11" value="Gives me dopamine hits" id="q11_4"><label for="q11_4">Gives me dopamine hits</label></div>
+                <div class="option"><input type="checkbox" name="q11" value="Makes me anxious (in a productive way)" id="q11_5"><label for="q11_5">Makes me anxious (in a productive way)</label></div>
+                <div class="option"><input type="checkbox" name="q11" value="Removes decisions" id="q11_6"><label for="q11_6">Removes decisions (just tells me what to do next)</label></div>
+                <div class="option"><input type="checkbox" name="q11" value="I've never consistently used any app" id="q11_7"><label for="q11_7">I've never consistently used any app</label></div>
+            </div>
+            
+            <div class="section-header">Specific Struggles</div>
+            
+            <div class="question">
+                <div class="question-text">12. Do you have trouble managing medication refills?</div>
+                <div class="option"><input type="radio" name="q12" value="Yes, major problem" id="q12_1"><label for="q12_1">Yes, major problem</label></div>
+                <div class="option"><input type="radio" name="q12" value="Yes, minor problem" id="q12_2"><label for="q12_2">Yes, minor problem</label></div>
+                <div class="option"><input type="radio" name="q12" value="No, I have a system" id="q12_3"><label for="q12_3">No, I have a system</label></div>
+                <div class="option"><input type="radio" name="q12" value="Not applicable" id="q12_4"><label for="q12_4">Not applicable</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">13. Do you lose time to these activities? (check all that apply)</div>
+                <div class="option"><input type="checkbox" name="q13" value="Social media scrolling" id="q13_1"><label for="q13_1">Social media scrolling</label></div>
+                <div class="option"><input type="checkbox" name="q13" value="Gaming" id="q13_2"><label for="q13_2">Gaming</label></div>
+                <div class="option"><input type="checkbox" name="q13" value="Youtube/streaming rabbit holes" id="q13_3"><label for="q13_3">Youtube/streaming rabbit holes</label></div>
+                <div class="option"><input type="checkbox" name="q13" value="Online arguments/debates" id="q13_4"><label for="q13_4">Online arguments/debates</label></div>
+                <div class="option"><input type="checkbox" name="q13" value="Shopping/browsing" id="q13_5"><label for="q13_5">Shopping/browsing</label></div>
+                <div class="option"><input type="checkbox" name="q13" value="Researching random topics" id="q13_6"><label for="q13_6">Researching random topics</label></div>
+                <div class="option"><input type="checkbox" name="q13" value="Cleaning/organizing (hyperfocus on wrong thing)" id="q13_7"><label for="q13_7">Cleaning/organizing (hyperfocus on wrong thing)</label></div>
+                <div class="option"><input type="checkbox" name="q13" value="Other repetitive dopamine activities" id="q13_8"><label for="q13_8">Other repetitive dopamine activities</label></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text">14. Would you pay for an app that actually solved these problems?</div>
+                <div class="option"><input type="radio" name="q14" value="Yes, subscription ($5-15/month)" id="q14_1"><label for="q14_1">Yes, subscription ($5-15/month)</label></div>
+                <div class="option"><input type="radio" name="q14" value="Yes, one-time purchase ($20-50)" id="q14_2"><label for="q14_2">Yes, one-time purchase ($20-50)</label></div>
+                <div class="option"><input type="radio" name="q14" value="Yes, premium ($50+)" id="q14_3"><label for="q14_3">Yes, premium ($50+)</label></div>
+                <div class="option"><input type="radio" name="q14" value="Maybe, depends on features" id="q14_4"><label for="q14_4">Maybe, depends on features</label></div>
+                <div class="option"><input type="radio" name="q14" value="No, needs to be free" id="q14_5"><label for="q14_5">No, needs to be free</label></div>
+                <div class="option"><input type="radio" name="q14" value="No, don't trust apps anymore" id="q14_6"><label for="q14_6">No, don't trust apps anymore</label></div>
+            </div>
+            
+            <div class="submit-section">
+                <button type="submit">Submit Response</button>
+            </div>
+        </form>
+        
+        <div class="admin-section">
+            <h3>Survey Admin</h3>
+            <div class="response-count" id="responseCount">Responses collected: 0</div>
+            <button id="downloadBtn">Download Responses (CSV)</button>
+        </div>
+    </div>
+    
+    <script>
+        // Store responses in localStorage
+        const STORAGE_KEY = 'adhd_survey_responses';
+        
+        function getResponses() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+        }
+        
+        function saveResponse(response) {
+            const responses = getResponses();
+            responses.push({
+                ...response,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
+            updateResponseCount();
+        }
+        
+        function updateResponseCount() {
+            const count = getResponses().length;
+            document.getElementById('responseCount').textContent = `Responses collected: ${count}`;
+        }
+        
+        // Handle form submission
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const response = {};
+            
+            // Process all form fields
+            for (let i = 1; i <= 14; i++) {
+                const questionName = `q${i}`;
+                const values = formData.getAll(questionName);
+                response[questionName] = values.length > 1 ? values.join('; ') : (values[0] || '');
+            }
+            
+            saveResponse(response);
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            this.reset();
+            
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Download CSV
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const responses = getResponses();
+            
+            if (responses.length === 0) {
+                alert('No responses to download yet.');
+                return;
+            }
+            
+            // Create CSV content
+            const headers = ['Timestamp', 'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10', 'Q11', 'Q12', 'Q13', 'Q14'];
+            let csv = headers.join(',') + '\n';
+            
+            responses.forEach(r => {
+                const row = [
+                    r.timestamp,
+                    `"${r.q1 || ''}"`,
+                    `"${r.q2 || ''}"`,
+                    `"${r.q3 || ''}"`,
+                    `"${r.q4 || ''}"`,
+                    `"${r.q5 || ''}"`,
+                    `"${r.q6 || ''}"`,
+                    `"${r.q7 || ''}"`,
+                    `"${r.q8 || ''}"`,
+                    `"${r.q9 || ''}"`,
+                    `"${r.q10 || ''}"`,
+                    `"${r.q11 || ''}"`,
+                    `"${r.q12 || ''}"`,
+                    `"${r.q13 || ''}"`,
+                    `"${r.q14 || ''}"`
+                ];
+                csv += row.join(',') + '\n';
+            });
+            
+            // Download file
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `adhd_survey_responses_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        });
+        
+        // Initialize response count on load
+        updateResponseCount();
+    </script>
+</body>
+</html>
